@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Climate dashboard early prototype</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 50px;
+        background: #ffffff;
+        color: rgb(10,177,169);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 30px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgb(10,177,169);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 80%;
+        padding: 20px;
+        border-radius: 10px;
+        border: solid 3px rgb(69,124,186);
+        background: white;
+      }
+    </style>
+  </head>
+
+ 
+  <body>
+    <div class="chartMenu">
+      <p>spannverbund ClimateView</p>
+    </div>
+    <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+        <button onclick="climateData(0)">Inner profiles</button>
+        <button onclick="climateData(1)">Outer profiles</button>
+        <button onclick="climateData(2)">Concrete</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function climateData(value){
+        async function climateData() {
+            console.log(value);
+            const url = 'data.json';
+            const response = await fetch(url);
+            const datapoints = await response.json();
+            console.log(datapoints);
+            return datapoints;
+
+        }
+
+        climateData().then(datapoints => {
+            const month = datapoints.financialreport[value].financials.map(
+                function (index) {
+                    return index.date
+                }
+            );
+            const profits = datapoints.financialreport[value].financials.map(
+                function (index) {
+                    return index.profits
+                }
+            );
+            const companyname = datapoints.financialreport[value].companyname
+            
+            
+
+            console.log(month);
+            myChart.config.data.labels=month;
+            myChart.config.data.datasets[0].data=profits;
+            myChart.config.data.datasets[0].label=companyname;
+            myChart.update();
+        })
+    }
+    // setup 
+    const data = {
+      labels: ['Standard', 'Green', 'Reference'],
+      datasets: [{
+        label: 'CO2 emissions by product',
+        data: [516, 380, 604],
+        backgroundColor: [
+          'rgb(69,124,186)',
+          'rgb(10,177,169)',
+          'rgb(20,51,76)'
+        ],
+        borderColor: [
+          'rgb(69,124,186)',
+          'rgb(10,177,169)',
+          'rgb(20,51,76)'
+          
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        maintainAspectratio:true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+    </script>
+
+  </body>
+</html>

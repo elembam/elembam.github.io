@@ -1,0 +1,86 @@
+{ 
+  "year": "2021",
+  "financialreport": [
+    {
+      "company": "Inner profiles",
+      "companyname": "Inner profiles",
+      "companystock": "CHRT",
+      "financials":
+      [
+        {
+        "date": "Standard",
+        
+        "profits": 300,
+        "target": "Target 1"
+       },
+       {
+        "date": "Green",
+        
+        "profits": 240,
+        "target": "Target 2"
+       },
+       {
+        "date": "Reference",
+        
+        "profits": 350,
+        "target": "Target 3"
+       }
+       
+      ]
+    },
+    {
+      "company": "Outer profiles",
+      "companyname": "Outer profiles",
+      "companystock": "CX",
+      "financials":
+      [
+        {
+        "date": "Standard",
+        
+        "profits": 150,
+        "target": "Target 21"
+       },
+       {
+        "date": "Green",
+        
+        "profits": 100,
+        "target": "Target 22"
+       },
+       {
+        "date": "Reference",
+        
+        "profits": 170,
+        "target": "Target 23"
+       }
+       
+      ]
+    },
+    {
+      "company": "Concrete",
+      "companyname": "Concrete",
+      "companystock": "START",
+      "financials":
+      [
+        {
+        "date": "Standard",
+        
+        "profits": 66,
+        "target": "Target 31"
+       },
+       {
+        "date": "Green",
+        
+        "profits": 40,
+        "target": "Target 32"
+       },
+       {
+        "date": "Reference",
+        
+        "profits": 84,
+        "target": "Target 33"
+       }
+       
+      ]
+    }
+  ]
+}
